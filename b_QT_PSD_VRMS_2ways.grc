@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.9'?>
+<?grc format='1' created='3.7.13'?>
 <flow_graph>
   <timestamp>Thu Sep 14 19:41:41 2017</timestamp>
   <block>
@@ -73,12 +73,20 @@
       <value>True</value>
     </param>
     <param>
+      <key>sizing_mode</key>
+      <value>fixed</value>
+    </param>
+    <param>
       <key>thread_safe_setters</key>
       <value></value>
     </param>
     <param>
       <key>title</key>
       <value>b_PSD_VRMS_2ways</value>
+    </param>
+    <param>
+      <key>placement</key>
+      <value>(0,0)</value>
     </param>
   </block>
   <block>
@@ -114,6 +122,10 @@
     <param>
       <key>short_id</key>
       <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
     </param>
     <param>
       <key>type</key>
@@ -253,6 +265,10 @@
       <value></value>
     </param>
     <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
       <key>type</key>
       <value></value>
     </param>
@@ -294,6 +310,10 @@
     <param>
       <key>short_id</key>
       <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
     </param>
     <param>
       <key>type</key>
@@ -1582,6 +1602,10 @@
       <value>1.0</value>
     </param>
     <param>
+      <key>axislabels</key>
+      <value>True</value>
+    </param>
+    <param>
       <key>bw</key>
       <value>samp_rate_audio</value>
     </param>
@@ -1651,7 +1675,7 @@
     </param>
     <param>
       <key>width1</key>
-      <value>1</value>
+      <value>3</value>
     </param>
     <param>
       <key>alpha10</key>
@@ -1683,7 +1707,7 @@
     </param>
     <param>
       <key>width2</key>
-      <value>1</value>
+      <value>3</value>
     </param>
     <param>
       <key>alpha3</key>
@@ -1850,12 +1874,20 @@
       <value>firdes.WIN_BLACKMAN_hARRIS</value>
     </param>
     <param>
+      <key>label</key>
+      <value>Relative Gain</value>
+    </param>
+    <param>
       <key>ymax</key>
       <value>10</value>
     </param>
     <param>
       <key>ymin</key>
       <value>-140</value>
+    </param>
+    <param>
+      <key>units</key>
+      <value>dB</value>
     </param>
   </block>
   <block>
@@ -1867,6 +1899,10 @@
     <param>
       <key>average</key>
       <value>0.05</value>
+    </param>
+    <param>
+      <key>axislabels</key>
+      <value>True</value>
     </param>
     <param>
       <key>bw</key>
@@ -1938,7 +1974,7 @@
     </param>
     <param>
       <key>width1</key>
-      <value>1</value>
+      <value>3</value>
     </param>
     <param>
       <key>alpha10</key>
@@ -1970,7 +2006,7 @@
     </param>
     <param>
       <key>width2</key>
-      <value>1</value>
+      <value>3</value>
     </param>
     <param>
       <key>alpha3</key>
@@ -2137,12 +2173,20 @@
       <value>firdes.WIN_BLACKMAN_hARRIS</value>
     </param>
     <param>
+      <key>label</key>
+      <value>Relative Gain</value>
+    </param>
+    <param>
       <key>ymax</key>
       <value>10</value>
     </param>
     <param>
       <key>ymin</key>
       <value>-140</value>
+    </param>
+    <param>
+      <key>units</key>
+      <value>dB</value>
     </param>
   </block>
   <block>
@@ -2845,6 +2889,10 @@
       <value>False</value>
     </param>
     <param>
+      <key>axislabels</key>
+      <value>True</value>
+    </param>
+    <param>
       <key>alias</key>
       <value></value>
     </param>
@@ -3149,6 +3197,10 @@
       <value>samp_rate_audio</value>
     </param>
     <param>
+      <key>stemplot</key>
+      <value>False</value>
+    </param>
+    <param>
       <key>tr_chan</key>
       <value>0</value>
     </param>
@@ -3257,7 +3309,7 @@
     </param>
     <param>
       <key>width1</key>
-      <value>1</value>
+      <value>3</value>
     </param>
     <param>
       <key>alpha10</key>
@@ -3289,7 +3341,7 @@
     </param>
     <param>
       <key>width2</key>
-      <value>1</value>
+      <value>3</value>
     </param>
     <param>
       <key>alpha3</key>
@@ -3528,7 +3580,7 @@
     </param>
     <param>
       <key>width1</key>
-      <value>1</value>
+      <value>3</value>
     </param>
     <param>
       <key>alpha10</key>
@@ -3560,7 +3612,7 @@
     </param>
     <param>
       <key>width2</key>
-      <value>1</value>
+      <value>3</value>
     </param>
     <param>
       <key>alpha3</key>
@@ -3772,6 +3824,10 @@
     <param>
       <key>short_id</key>
       <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
     </param>
     <param>
       <key>type</key>
