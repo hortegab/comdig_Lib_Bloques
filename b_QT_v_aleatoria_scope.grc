@@ -419,6 +419,61 @@
     </param>
   </block>
   <block>
+    <key>b_QT_autocorrel</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>samp_rate_audio</key>
+      <value>samp_rate</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(640, 364)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>2,2,1,2</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>b_QT_autocorrel_0</value>
+    </param>
+    <param>
+      <key>N</key>
+      <value>N_frec</value>
+    </param>
+    <param>
+      <key>Ensayos</key>
+      <value>1000000</value>
+    </param>
+    <param>
+      <key>Titulo</key>
+      <value>'Autocorrelation'</value>
+    </param>
+    <param>
+      <key>Ymax</key>
+      <value>4e-7</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_multiply_xx</key>
     <param>
       <key>alias</key>
@@ -630,7 +685,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -638,7 +693,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(632, 388)</value>
+      <value>(1000, 716)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -965,7 +1020,7 @@
     </param>
     <param>
       <key>width1</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>alpha10</key>
@@ -1193,7 +1248,7 @@
     </param>
     <param>
       <key>name</key>
-      <value>"histogramm"</value>
+      <value>"histogram"</value>
     </param>
     <param>
       <key>bins</key>
@@ -2361,6 +2416,12 @@
   </connection>
   <connection>
     <source_block_id>pad_source_2</source_block_id>
+    <sink_block_id>b_QT_autocorrel_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pad_source_2</source_block_id>
     <sink_block_id>blocks_multiply_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -2374,12 +2435,6 @@
   <connection>
     <source_block_id>pad_source_2</source_block_id>
     <sink_block_id>blocks_rms_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>pad_source_2</source_block_id>
-    <sink_block_id>qtgui_freq_sink_x_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
