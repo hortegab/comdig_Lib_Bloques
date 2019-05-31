@@ -22,7 +22,7 @@
     </param>
     <param>
       <key>description</key>
-      <value>Este bloque es un simulador de un canal AWGN (Additive White Gaussian Noise) en bandabase. De modo que solo tiene tres características: suma ruido blanco a la señal,  restringe el ancho de banda e Introduce un retardo a la señal. Parametros: Ch_NodB - altura de la PSD del ruido blanco bandabase; samp_rate - frecuencia de muestreo de la señal; BW - ancho de banda bandabase, Ch_Toffset - retardo dado en muestraas que el canal introduce</value>
+      <value>Este bloque es un simulador de un canal AWGN (Additive White Gaussian Noise) en bandabase. De modo que solo tiene tres características: suma ruido blanco a la señal,  restringe el ancho de banda e Introduce un retardo a la señal. Parametros: Ch_NodB - altura de la PSD del ruido blanco bandabase; samp_rate - frecuencia de muestreo de la señal; BW - ancho de banda sobre el cual desea ver el efecto del ruido, por lo general es el mismo valor de la frecuencia de muestreo sobre 2, Ch_Toffset - retardo dado en muestraas que el canal introduce</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -30,7 +30,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 3)</value>
+      <value>(80, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -105,7 +105,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 7)</value>
+      <value>(688, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -152,7 +152,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(296, 7)</value>
+      <value>(376, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -199,7 +199,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 7)</value>
+      <value>(552, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -281,7 +281,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(192, 292)</value>
+      <value>(80, 220)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -328,7 +328,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(424, 209)</value>
+      <value>(392, 160)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -383,7 +383,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(248, 204)</value>
+      <value>(216, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -430,7 +430,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 4)</value>
+      <value>(792, 60)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -461,7 +461,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(792, 4)</value>
+      <value>(784, 108)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -492,7 +492,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(888, 4)</value>
+      <value>(784, 156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -523,7 +523,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(608, 4)</value>
+      <value>(792, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -574,7 +574,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(520, 172)</value>
+      <value>(464, 124)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -625,7 +625,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(704, 220)</value>
+      <value>(696, 172)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -668,7 +668,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 204)</value>
+      <value>(80, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -715,7 +715,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 7)</value>
+      <value>(264, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
