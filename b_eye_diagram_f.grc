@@ -1,0 +1,482 @@
+<?xml version='1.0' encoding='utf-8'?>
+<?grc format='1' created='3.7.13'?>
+<flow_graph>
+  <timestamp>Sat Jun 15 20:47:01 2019</timestamp>
+  <block>
+    <key>options</key>
+    <param>
+      <key>author</key>
+      <value>Homero Ortega</value>
+    </param>
+    <param>
+      <key>window_size</key>
+      <value></value>
+    </param>
+    <param>
+      <key>category</key>
+      <value>comdiguis</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>description</key>
+      <value>permite visualizar el diagrama de ojo. Parametros usados: Sps - muestras por simbolo; Vpico - amplitud pico de la señal</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(8, 8)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>generate_options</key>
+      <value>hb</value>
+    </param>
+    <param>
+      <key>hier_block_src_path</key>
+      <value>.:</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>b_eye_diagram_f</value>
+    </param>
+    <param>
+      <key>max_nouts</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>qt_qss_theme</key>
+      <value></value>
+    </param>
+    <param>
+      <key>realtime_scheduling</key>
+      <value></value>
+    </param>
+    <param>
+      <key>run_command</key>
+      <value>{python} -u {filename}</value>
+    </param>
+    <param>
+      <key>run_options</key>
+      <value>prompt</value>
+    </param>
+    <param>
+      <key>run</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>sizing_mode</key>
+      <value>fixed</value>
+    </param>
+    <param>
+      <key>thread_safe_setters</key>
+      <value></value>
+    </param>
+    <param>
+      <key>title</key>
+      <value>b_eye_diagram_f</value>
+    </param>
+    <param>
+      <key>placement</key>
+      <value>(0,0)</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(400, 12)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>N</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>2048</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(208, 4)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>Sps</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Sps</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>24</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_stream_to_vector</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(168, 172)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_stream_to_vector_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_items</key>
+      <value>N</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_stream_to_vector</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(208, 260)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_stream_to_vector_0_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_items</key>
+      <value>N</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Eye Diagram', 'blk', [('Sps', '24'), ('N', '24000'), ('Vpico', '1')], [('0', 'float', 24000)], [], 'hecho por: Homero Ortega Boada. Permite obtener el diagrama de ojo', ['N', 'Sps'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each time this file is saved, GRC will instantiate the first class it finds
+to get ports and parameters of your block. The arguments to __init__  will
+be the parameters. All of them are required to have default values!
+"""
+
+import numpy as np
+from gnuradio import gr
+from eyediagram.demo_data import demo_data
+from eyediagram.mpl import eyediagram
+import matplotlib.pyplot as plt
+
+
+class blk(gr.sync_block):  
+    """hecho por: Homero Ortega Boada. Permite obtener el diagrama de ojo"""
+
+    def __init__(self, Sps=24, N=24000):
+        gr.sync_block.__init__(self, name='Eye Diagram', in_sig=[(np.float32, N)], out_sig=None)
+        # self.Vpico = Vpico
+	self.Sps = Sps
+	self.N = N
+
+    def work(self, input_items, output_items):
+  	in0 = input_items[0]
+	y=in0[0]/(in0[0].max()*4.)
+	eyediagram(y, 2*self.Sps, offset=int(self.Sps/2), cmap=plt.cm.coolwarm)
+	#plt.plot(y)
+	plt.show()
+        return len(input_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(344, 164)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0</value>
+    </param>
+    <param>
+      <key>N</key>
+      <value>N</value>
+    </param>
+    <param>
+      <key>Sps</key>
+      <value>Sps</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Eye Diagram_v3', 'blk', [('Sps', '8'), ('N', '2048')], [('0', 'float', 2048)], [], 'hecho por: Homero Ortega Boada. Permite obtener el diagrama de ojo', ['N', 'Sps'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each time this file is saved, GRC will instantiate the first class it finds
+to get ports and parameters of your block. The arguments to __init__  will
+be the parameters. All of them are required to have default values!
+"""
+
+import numpy as np
+from gnuradio import gr
+from eyediagram.demo_data import demo_data
+from eyediagram.mpl import eyediagram
+import matplotlib.pyplot as plt
+
+
+class blk(gr.sync_block):  
+    """hecho por: Homero Ortega Boada. Permite obtener el diagrama de ojo"""
+
+    def __init__(self, Sps=8, N=2048):
+        gr.sync_block.__init__(self, name='Eye Diagram_v3', in_sig=[(np.float32, N)], out_sig=None)
+        self.Sps = Sps
+	self.N = N
+
+    def work(self, input_items, output_items):
+  	in0 = input_items[0] # in0 es un 2D array (como una matrix)
+	y=in0.reshape(-1)    # Esto traduce el 2D array a 1D array (a un vector)
+	y=y/(y.max()*2.)     # Esto normaliza los valores de y
+	eyediagram(y, 2*self.Sps, offset=int(self.Sps/2), cmap=plt.cm.coolwarm)
+	plt.show()
+        return len(input_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(368, 252)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_1</value>
+    </param>
+    <param>
+      <key>N</key>
+      <value>N</value>
+    </param>
+    <param>
+      <key>Sps</key>
+      <value>Sps</value>
+    </param>
+  </block>
+  <block>
+    <key>pad_source</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(24, 172)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pad_source_0</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>in</value>
+    </param>
+    <param>
+      <key>num_streams</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>optional</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <connection>
+    <source_block_id>blocks_stream_to_vector_0</source_block_id>
+    <sink_block_id>epy_block_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_stream_to_vector_0_0</source_block_id>
+    <sink_block_id>epy_block_0_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pad_source_0</source_block_id>
+    <sink_block_id>blocks_stream_to_vector_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pad_source_0</source_block_id>
+    <sink_block_id>blocks_stream_to_vector_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+</flow_graph>
