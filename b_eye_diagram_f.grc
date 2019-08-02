@@ -179,57 +179,6 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(168, 172)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_stream_to_vector_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>num_items</key>
-      <value>N</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_stream_to_vector</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
@@ -263,80 +212,6 @@
     <param>
       <key>vlen</key>
       <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('Eye Diagram', 'blk', [('Sps', '24'), ('N', '24000'), ('Vpico', '1')], [('0', 'float', 24000)], [], 'hecho por: Homero Ortega Boada. Permite obtener el diagrama de ojo', ['N', 'Sps'])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each time this file is saved, GRC will instantiate the first class it finds
-to get ports and parameters of your block. The arguments to __init__  will
-be the parameters. All of them are required to have default values!
-"""
-
-import numpy as np
-from gnuradio import gr
-from eyediagram.demo_data import demo_data
-from eyediagram.mpl import eyediagram
-import matplotlib.pyplot as plt
-
-
-class blk(gr.sync_block):  
-    """hecho por: Homero Ortega Boada. Permite obtener el diagrama de ojo"""
-
-    def __init__(self, Sps=24, N=24000):
-        gr.sync_block.__init__(self, name='Eye Diagram', in_sig=[(np.float32, N)], out_sig=None)
-        # self.Vpico = Vpico
-	self.Sps = Sps
-	self.N = N
-
-    def work(self, input_items, output_items):
-  	in0 = input_items[0]
-	y=in0[0]/(in0[0].max()*4.)
-	eyediagram(y, 2*self.Sps, offset=int(self.Sps/2), cmap=plt.cm.coolwarm)
-	#plt.plot(y)
-	plt.show()
-        return len(input_items[0])
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(344, 164)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>epy_block_0</value>
-    </param>
-    <param>
-      <key>N</key>
-      <value>N</value>
-    </param>
-    <param>
-      <key>Sps</key>
-      <value>Sps</value>
     </param>
   </block>
   <block>
@@ -424,7 +299,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 172)</value>
+      <value>(24, 260)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -456,20 +331,8 @@ class blk(gr.sync_block):
     </param>
   </block>
   <connection>
-    <source_block_id>blocks_stream_to_vector_0</source_block_id>
-    <sink_block_id>epy_block_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blocks_stream_to_vector_0_0</source_block_id>
     <sink_block_id>epy_block_0_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>pad_source_0</source_block_id>
-    <sink_block_id>blocks_stream_to_vector_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
