@@ -204,6 +204,126 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_io_cache</key>
+      <value>('Complex to Phase', 'blk', [('M', '4')], [('0', 'complex', 1)], [('0', 'float', 1)], 'Autor: Homero Ortega. Permite obtener la fase de una senal compleja. A diferencia de otros bloques de gnuradio, este entrega valores positivos de fase entre 0 y 2pi. M es el numero de posibles fases discretas que trae la senal', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+    """Autor: Homero Ortega. Permite obtener la fase de una senal compleja. A diferencia de otros bloques de gnuradio, este entrega valores positivos de fase entre 0 y 2pi. M es el numero de posibles fases discretas que trae la senal"""
+    def __init__(self,M=4):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='Complex to Phase',   # will show up in GRC
+            in_sig=[np.complex64],
+            out_sig=[np.float32]
+        )
+	self.M=M
+	self.p2=2.*np.pi
+	self.p_margen=self.p2/(M*2.)
+
+    def work(self, input_items, output_items):
+	fases=np.angle(input_items[0]) # tiene valores negativos
+	fases=(fases+self.p_margen +self.p2)% self.p2-self.p_margen
+        output_items[0][:] = fases
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(824, 20)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_c_p</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('phase to M_PAM', 'blk', [('M', '4')], [('0', 'float', 1)], [('0', 'float', 1)], '', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """Traduce fases a valores de M_PAM y aplica decisor mediante redondeo"""
+    def __init__(self,M=4):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='phase to M_PAM',   # will show up in GRC
+            in_sig=[np.float32],
+            out_sig=[np.float32]
+        )
+	self.M=M
+	self.p2=2.*np.pi
+
+    def work(self, input_items, output_items):
+	mpam_con_ruido=input_items[0]*self.M/self.p2
+	mpam_sin_ruido=np.round(mpam_con_ruido)
+
+        output_items[0][:] = mpam_sin_ruido
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(680, 20)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_phase</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
       <value>('positphase', 'blk', [], [('0', 'float', 1)], [('0', 'float', 1)], 'Coverts phase with some negative values to all positive values', [])</value>
     </param>
     <param>
@@ -343,4 +463,10 @@ def rrcos(Sps,ntaps,beta):
       <value>wform</value>
     </param>
   </block>
+  <connection>
+    <source_block_id>e_c_p</source_block_id>
+    <sink_block_id>e_phase</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
 </flow_graph>
