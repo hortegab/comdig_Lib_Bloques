@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>b_python_modules</value>
+      <value>b_help</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -82,7 +82,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>b_python_modules</value>
+      <value>b_help</value>
     </param>
     <param>
       <key>placement</key>
@@ -134,6 +134,118 @@
     <param>
       <key>type</key>
       <value>real</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_VCO_fase_fc', 'blk', [], [('0', 'float', 1), ('1', 'float', 1)], [('0', 'complex', 1)], 'Done by Homero Ortega Boada. Es un VCO dos entradas: \n\tin0 para manipular la fase, in1 para manipular la \n\tmagnitud. En el fondo es el equivalente a un generador\n\tde una senal exponencial compleja. Sobre la configuracion:\n\tcada valor de la senal en in0 es interpretada como la fase\n\tdeseada en radianes. cada valor de in0, es la magnitud deseada', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>
+import numpy as np
+from gnuradio import gr
+
+
+class blk(gr.sync_block):  
+    """Done by Homero Ortega Boada. Es un VCO dos entradas: 
+	in0 para manipular la fase, in1 para manipular la 
+	magnitud. En el fondo es el equivalente a un generador
+	de una senal exponencial compleja. Sobre la configuracion:
+	cada valor de la senal en in0 es interpretada como la fase
+	deseada en radianes. cada valor de in0, es la magnitud deseada"""
+
+    def __init__(self): 
+        gr.sync_block.__init__(self,
+            name='e_VCO_fase_fc',
+	    in_sig=[np.float32, np.float32],
+            out_sig=[np.complex64]
+        )
+    def work(self, input_items, output_items):
+	in0=input_items[0]
+	in1=input_items[1]
+	out0=output_items[0]
+	out0[:] = in1*np.exp(1.j*in0)
+	return len(out0)
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(536, 40)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_VCO_fase_fc_0</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('positphase', 'blk', [], [('0', 'float', 1)], [('0', 'float', 1)], 'Coverts phase with some negative values to all positive values', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+    """Coverts phase with some negative values to all positive values"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='positphase',   # will show up in GRC
+            in_sig=[np.float32],
+            out_sig=[np.float32]
+        )
+	self.p2=2*np.pi
+
+    def work(self, input_items, output_items):
+        output_items[0][:] = (input_items[0] +self.p2) % self.p2
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(288, 56)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0</value>
     </param>
   </block>
   <block>
