@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <?grc format='1' created='3.7.13'?>
 <flow_graph>
-  <timestamp>Sun Mar 12 17:22:59 2017</timestamp>
+  <timestamp>Thu Sep 14 19:18:12 2017</timestamp>
   <block>
     <key>options</key>
     <param>
       <key>author</key>
-      <value>Homero Ortega Boada. Universidad Industrial de Santander</value>
+      <value>Homero Ortega Boada</value>
     </param>
     <param>
       <key>window_size</key>
@@ -22,7 +22,7 @@
     </param>
     <param>
       <key>description</key>
-      <value>Es el demodulador que hace juego con el b_M_PAM_bb. La salida es una senal binaria (PCM) pero de tipo Byte (osea, unos y ceros en formato Byte). Parametros usados: M- es el orden de la modulacion M-PAM.</value>
+      <value>Realiza el scrambling. A diferencia de otros bloques de scrambling este opera con senales unipolares de entrada y de salida</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>b_de_M_PAM_bb</value>
+      <value>b_u_scrambling_bb</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -82,7 +82,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>b_de_M_PAM_bb</value>
+      <value>b_u_scrambling_bb</value>
     </param>
     <param>
       <key>placement</key>
@@ -90,61 +90,11 @@
     </param>
   </block>
   <block>
-    <key>variable</key>
+    <key>E3TRadio_unipolar_to_bipolar_ff</key>
     <param>
-      <key>comment</key>
-      <value></value>
+      <key>Amp</key>
+      <value>1.</value>
     </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(272, 3)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>Bps</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>int(math.log(M,2))</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(552, 11)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>Nbps</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>8</value>
-    </param>
-  </block>
-  <block>
-    <key>parameter</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -154,12 +104,16 @@
       <value></value>
     </param>
     <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(192, 3)</value>
+      <value>(504, 236)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -167,31 +121,19 @@
     </param>
     <param>
       <key>id</key>
-      <value>M</value>
+      <value>E3TRadio_unipolar_to_bipolar_ff_0_0</value>
     </param>
     <param>
-      <key>label</key>
-      <value>M</value>
+      <key>maxoutbuf</key>
+      <value>0</value>
     </param>
     <param>
-      <key>short_id</key>
-      <value></value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>intx</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>4</value>
+      <key>minoutbuf</key>
+      <value>0</value>
     </param>
   </block>
   <block>
-    <key>parameter</key>
+    <key>analog_random_uniform_source_x</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -201,12 +143,16 @@
       <value></value>
     </param>
     <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
       <key>_enabled</key>
       <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(440, 3)</value>
+      <value>(72, 222)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -214,27 +160,180 @@
     </param>
     <param>
       <key>id</key>
-      <value>SymbTune</value>
+      <value>analog_random_uniform_source_x_0</value>
     </param>
     <param>
-      <key>label</key>
-      <value>SymbTune</value>
+      <key>maxoutbuf</key>
+      <value>0</value>
     </param>
     <param>
-      <key>short_id</key>
-      <value></value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>intx</value>
-    </param>
-    <param>
-      <key>value</key>
+      <key>maximum</key>
       <value>2</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minimum</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>seed</key>
+      <value>semilla</value>
+    </param>
+  </block>
+  <block>
+    <key>analog_random_uniform_source_x</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(72, 412)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>analog_random_uniform_source_x_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maximum</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minimum</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>seed</key>
+      <value>semilla</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_char_to_float</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(336, 140)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_char_to_float_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>scale</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_char_to_float</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(352, 236)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_char_to_float_0_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>scale</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -253,7 +352,7 @@
     </param>
     <param>
       <key>delay</key>
-      <value>SymbTune</value>
+      <value>retardo</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -261,7 +360,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 283)</value>
+      <value>(264, 236)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -269,7 +368,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_delay_0_0_0</value>
+      <value>blocks_delay_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -293,7 +392,7 @@
     </param>
   </block>
   <block>
-    <key>blocks_unpack_k_bits_bb</key>
+    <key>blocks_delay</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -307,12 +406,16 @@
       <value></value>
     </param>
     <param>
+      <key>delay</key>
+      <value>retardo</value>
+    </param>
+    <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(544, 388)</value>
+      <value>(264, 428)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -320,144 +423,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_unpack_k_bits_bb_0</value>
-    </param>
-    <param>
-      <key>k</key>
-      <value>Nbps</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_unpack_k_bits_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(760, 283)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_unpack_k_bits_bb_0_1_0</value>
-    </param>
-    <param>
-      <key>k</key>
-      <value>Nbps</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_unpack_k_bits_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(760, 172)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_unpack_k_bits_bb_0_1_0_0</value>
-    </param>
-    <param>
-      <key>k</key>
-      <value>Nbps</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_unpacked_to_packed_xx</key>
-    <param>
-      <key>bits_per_chunk</key>
-      <value>Bps</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>endianness</key>
-      <value>gr.GR_MSB_FIRST</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(576, 275)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_unpacked_to_packed_xx_0</value>
+      <value>blocks_delay_0_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -475,13 +441,13 @@
       <key>type</key>
       <value>byte</value>
     </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
   </block>
   <block>
-    <key>blocks_unpacked_to_packed_xx</key>
-    <param>
-      <key>bits_per_chunk</key>
-      <value>Bps</value>
-    </param>
+    <key>blocks_float_to_char</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -499,12 +465,8 @@
       <value>0</value>
     </param>
     <param>
-      <key>endianness</key>
-      <value>gr.GR_MSB_FIRST</value>
-    </param>
-    <param>
       <key>_coordinate</key>
-      <value>(576, 164)</value>
+      <value>(896, 156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -512,7 +474,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_unpacked_to_packed_xx_0_0</value>
+      <value>blocks_float_to_char_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -523,20 +485,16 @@
       <value>0</value>
     </param>
     <param>
-      <key>num_ports</key>
+      <key>scale</key>
       <value>1</value>
     </param>
     <param>
-      <key>type</key>
-      <value>byte</value>
+      <key>vlen</key>
+      <value>1</value>
     </param>
   </block>
   <block>
-    <key>blocks_unpacked_to_packed_xx</key>
-    <param>
-      <key>bits_per_chunk</key>
-      <value>Bps</value>
-    </param>
+    <key>blocks_multiply_xx</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -551,15 +509,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>endianness</key>
-      <value>gr.GR_MSB_FIRST</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(344, 380)</value>
+      <value>(784, 145)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -567,7 +521,11 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_unpacked_to_packed_xx_0_1</value>
+      <value>blocks_multiply_xx_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -578,12 +536,115 @@
       <value>0</value>
     </param>
     <param>
-      <key>num_ports</key>
+      <key>num_inputs</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_Multiply_bb', 'blk', [], [('0', 'byte', 1), ('1', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """Multiplica dos senales tipo char"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_Multiply_bb',   # will show up in GRC
+            in_sig=[np.int8, np.int8],
+            out_sig=[np.int8]
+        )
+
+    def work(self, input_items, output_items):
+        output_items[0][:] = input_items[0]*input_items[1]
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
-      <key>type</key>
-      <value>byte</value>
+      <key>_coordinate</key>
+      <value>(608, 368)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_Multiply</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_bipolar_to_unipolar_bb', 'blk', [], [('0', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """convierte de bipolar a unipolar una senal tipo char"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_bipolar_to_unipolar_bb',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+
+    def work(self, input_items, output_items):
+
+        output_items[0][:] = (input_items[0]+1)/2
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(760, 384)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_bipol_to_unip</value>
     </param>
   </block>
   <block>
@@ -627,7 +688,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(680, 392)</value>
+      <value>(376, 336)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -639,10 +700,35 @@ class blk(gr.sync_block):
     </param>
   </block>
   <block>
-    <key>import</key>
+    <key>epy_block</key>
     <param>
       <key>alias</key>
       <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_unipolar to bipolar_bb', 'blk', [], [('0', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """convierte de unipolar a bipolar una senal tipo char"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_unipolar to bipolar_bb',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+
+    def work(self, input_items, output_items):
+
+        output_items[0][:] = input_items[0]*2-1
+        return len(output_items[0])
+</value>
     </param>
     <param>
       <key>comment</key>
@@ -650,11 +736,11 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(344, 3)</value>
+      <value>(368, 432)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -662,11 +748,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>id</key>
-      <value>import_0</value>
-    </param>
-    <param>
-      <key>import</key>
-      <value>import math</value>
+      <value>e_unip_to_bipol_0</value>
     </param>
   </block>
   <block>
@@ -681,7 +763,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(920, 283)</value>
+      <value>(1056, 156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -720,11 +802,11 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(920, 172)</value>
+      <value>(976, 380)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -733,49 +815,6 @@ class blk(gr.sync_block):
     <param>
       <key>id</key>
       <value>pad_sink_0_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>out</value>
-    </param>
-    <param>
-      <key>num_streams</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>optional</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>pad_sink</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(888, 388)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pad_sink_1</value>
     </param>
     <param>
       <key>type</key>
@@ -810,7 +849,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 283)</value>
+      <value>(24, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -849,11 +888,11 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 172)</value>
+      <value>(80, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -885,7 +924,11 @@ class blk(gr.sync_block):
     </param>
   </block>
   <block>
-    <key>pad_source</key>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
     <param>
       <key>comment</key>
       <value></value>
@@ -896,7 +939,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 388)</value>
+      <value>(496, -1)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -904,92 +947,163 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>id</key>
-      <value>pad_source_0_1</value>
+      <value>retardo</value>
     </param>
     <param>
       <key>label</key>
-      <value>in</value>
+      <value>retardo</value>
     </param>
     <param>
-      <key>num_streams</key>
-      <value>1</value>
+      <key>short_id</key>
+      <value></value>
     </param>
     <param>
-      <key>optional</key>
-      <value>False</value>
+      <key>hide</key>
+      <value>none</value>
     </param>
     <param>
       <key>type</key>
-      <value>byte</value>
+      <value>intx</value>
     </param>
     <param>
-      <key>vlen</key>
-      <value>1</value>
+      <key>value</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(328, 6)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>semilla</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>semilla</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>42</value>
     </param>
   </block>
   <connection>
-    <source_block_id>blocks_delay_0_0_0</source_block_id>
-    <sink_block_id>blocks_unpacked_to_packed_xx_0</sink_block_id>
+    <source_block_id>E3TRadio_unipolar_to_bipolar_ff_0_0</source_block_id>
+    <sink_block_id>blocks_multiply_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>analog_random_uniform_source_x_0</source_block_id>
+    <sink_block_id>blocks_delay_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_unpack_k_bits_bb_0</source_block_id>
-    <sink_block_id>e_unip_to_bipol</sink_block_id>
+    <source_block_id>analog_random_uniform_source_x_0_0</source_block_id>
+    <sink_block_id>blocks_delay_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_unpack_k_bits_bb_0_1_0</source_block_id>
+    <source_block_id>blocks_char_to_float_0</source_block_id>
+    <sink_block_id>blocks_multiply_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_char_to_float_0_0_0</source_block_id>
+    <sink_block_id>E3TRadio_unipolar_to_bipolar_ff_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0</source_block_id>
+    <sink_block_id>blocks_char_to_float_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0_0</source_block_id>
+    <sink_block_id>e_unip_to_bipol_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_float_to_char_0</source_block_id>
     <sink_block_id>pad_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_unpack_k_bits_bb_0_1_0_0</source_block_id>
+    <source_block_id>blocks_multiply_xx_0</source_block_id>
+    <sink_block_id>blocks_float_to_char_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>e_Multiply</source_block_id>
+    <sink_block_id>e_bipol_to_unip</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>e_bipol_to_unip</source_block_id>
     <sink_block_id>pad_sink_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_unpacked_to_packed_xx_0</source_block_id>
-    <sink_block_id>blocks_unpack_k_bits_bb_0_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_unpacked_to_packed_xx_0_0</source_block_id>
-    <sink_block_id>blocks_unpack_k_bits_bb_0_1_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_unpacked_to_packed_xx_0_1</source_block_id>
-    <sink_block_id>blocks_unpack_k_bits_bb_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>e_unip_to_bipol</source_block_id>
-    <sink_block_id>pad_sink_1</sink_block_id>
+    <sink_block_id>e_Multiply</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>e_unip_to_bipol_0</source_block_id>
+    <sink_block_id>e_Multiply</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
   </connection>
   <connection>
     <source_block_id>pad_source_0</source_block_id>
-    <sink_block_id>blocks_delay_0_0_0</sink_block_id>
+    <sink_block_id>blocks_char_to_float_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>pad_source_0_0</source_block_id>
-    <sink_block_id>blocks_unpacked_to_packed_xx_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>pad_source_0_1</source_block_id>
-    <sink_block_id>blocks_unpacked_to_packed_xx_0_1</sink_block_id>
+    <sink_block_id>e_unip_to_bipol</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

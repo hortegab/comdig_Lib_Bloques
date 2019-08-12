@@ -144,6 +144,108 @@
     </param>
     <param>
       <key>_io_cache</key>
+      <value>('e_Add_bb', 'blk', [], [('0', 'byte', 1), ('1', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """Suma dos senales tipo char"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_Add_bb',   # will show up in GRC
+            in_sig=[np.int8, np.int8],
+            out_sig=[np.int8]
+        )
+
+    def work(self, input_items, output_items):
+        output_items[0][:] = input_items[0]+input_items[1]
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(672, 168)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_Add</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_Multiply_bb', 'blk', [], [('0', 'byte', 1), ('1', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """Multiplica dos senales tipo char"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_Multiply_bb',   # will show up in GRC
+            in_sig=[np.int8, np.int8],
+            out_sig=[np.int8]
+        )
+
+    def work(self, input_items, output_items):
+        output_items[0][:] = input_items[0]*input_items[1]
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(792, 168)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_Multiply</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
       <value>('e_VCO_fase_fc', 'blk', [], [('0', 'float', 1), ('1', 'float', 1)], [('0', 'complex', 1)], 'Done by Homero Ortega Boada. Es un VCO dos entradas: \n\tin0 para manipular la fase, in1 para manipular la \n\tmagnitud. En el fondo es el equivalente a un generador\n\tde una senal exponencial compleja. Sobre la configuracion:\n\tcada valor de la senal en in0 es interpretada como la fase\n\tdeseada en radianes. cada valor de in0, es la magnitud deseada', [])</value>
     </param>
     <param>
@@ -194,6 +296,58 @@ class blk(gr.sync_block):
     <param>
       <key>id</key>
       <value>e_VCO_fase_fc_0</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_bipolar_to_unipolar_bb', 'blk', [], [('0', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """convierte de bipolar a unipolar una senal tipo char"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_bipolar_to_unipolar_bb',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+
+    def work(self, input_items, output_items):
+
+        output_items[0][:] = (input_items[0]+1)/2
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(376, 192)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_bipol_to_unip</value>
     </param>
   </block>
   <block>
@@ -264,6 +418,65 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_io_cache</key>
+      <value>('M_PAM to Phase', 'blk', [('M', '4')], [('0', 'byte', 1)], [('0', 'float', 1)], '', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """Traduce M_PAM a valores de fase"""
+    def __init__(self,M=4):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='M_PAM to Phase',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.float32]
+        )
+	self.M=M
+	self.p2=2.*np.pi
+
+    def work(self, input_items, output_items):
+	#fases=input_items[0]*self.p2/self.M
+
+        output_items[0][:] = input_items[0]*self.p2/self.M
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(680, 84)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_mpam_ph</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
       <value>('phase to M_PAM', 'blk', [('M', '4')], [('0', 'float', 1)], [('0', 'float', 1)], '', ['M'])</value>
     </param>
     <param>
@@ -314,6 +527,118 @@ class blk(gr.sync_block):
     <param>
       <key>M</key>
       <value>M</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('phase to M_PAM', 'blk', [('M', '4')], [('0', 'float', 1)], [('0', 'byte', 1)], '', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """Traduce fases a valores de M_PAM y aplica decisor mediante redondeo"""
+    def __init__(self,M=4):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='phase to M_PAM',   # will show up in GRC
+            in_sig=[np.float32],
+            out_sig=[np.int8]
+        )
+	self.M=M
+	self.p2=2.*np.pi
+
+    def work(self, input_items, output_items):
+	mpam_con_ruido=input_items[0]*self.M/self.p2
+	mpam_sin_ruido=np.round(mpam_con_ruido)
+
+        output_items[0][:] = mpam_sin_ruido.astype(np.int8)
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(832, 76)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_phase_0</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_unipolar to bipolar_bb', 'blk', [], [('0', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """convierte de unipolar a bipolar una senal tipo char"""
+    def __init__(self,):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_unipolar to bipolar_bb',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+
+    def work(self, input_items, output_items):
+
+        output_items[0][:] = input_items[0]*2-1
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(376, 152)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_unip_to_bipol</value>
     </param>
   </block>
   <block>
