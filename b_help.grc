@@ -195,6 +195,70 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_io_cache</key>
+      <value>('e_M_PAM_decisor', 'blk', [('M', '4'), ('Vp', '4')], [('0', 'float', 1)], [('0', 'byte', 1)], '', ['M', 'Vp'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """M-ary Decisor. Es un decisor para senales M_PAM. VP es el valor pico de la senal entrante"""
+    def __init__(self,M=4, Vp=4):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_M_PAM_decisor',   # will show up in GRC
+            in_sig=[np.float32],
+            out_sig=[np.int8]
+        )
+	self.M=M
+	self.Vp=Vp
+
+    def work(self, input_items, output_items):
+	mpam_con_ruido=input_items[0]*(self.M+1)/(2*self.Vp)
+	mpam_sin_ruido=np.round(mpam_con_ruido)
+
+        output_items[0][:] = mpam_sin_ruido.astype(np.int8)
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(680, 260)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_M_decisor_0</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+    <param>
+      <key>Vp</key>
+      <value>3</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
       <value>('e_Multiply_bb', 'blk', [], [('0', 'byte', 1), ('1', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
     </param>
     <param>
@@ -348,6 +412,62 @@ class blk(gr.sync_block):
     <param>
       <key>id</key>
       <value>e_bipol_to_unip</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_bipolar_to_unipolar_M_bb', 'blk', [('M', '2')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """convierte de bipolar a unipolar una senal tipo char M-aria"""
+    def __init__(self, M=2):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_bipolar_to_unipolar_M_bb',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+	self.M=M
+    def work(self, input_items, output_items):
+
+        output_items[0][:] = (input_items[0]+(self.M-1))/2
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(368, 284)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_bipol_to_unip_M</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>2</value>
     </param>
   </block>
   <block>
@@ -649,6 +769,63 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_io_cache</key>
+      <value>('e_unipolar to bipolar_M_bb', 'blk', [('M', '2')], [('0', 'byte', 1)], [('0', 'byte', 1)], '', ['M'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):  
+#    """convierte de unipolar a bipolar una senal tipo char M-aria. El parametro M es para indicar si la senal es binaria (M=2), cuaternaria M=4, etc"""
+    def __init__(self,M=2):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_unipolar to bipolar_M_bb',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+	self.M=M
+
+    def work(self, input_items, output_items):
+
+        output_items[0][:] = input_items[0]*2-(self.M-1)
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(368, 236)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_unip_to_bipol_M</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>2</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
       <value>('positphase', 'blk', [], [('0', 'float', 1)], [('0', 'float', 1)], 'Coverts phase with some negative values to all positive values', [])</value>
     </param>
     <param>
@@ -682,7 +859,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(288, 56)</value>
+      <value>(288, 16)</value>
     </param>
     <param>
       <key>_rotation</key>
