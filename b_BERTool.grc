@@ -156,7 +156,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(352, 224)</value>
+      <value>(352, 384)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -211,7 +211,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(176, 140)</value>
+      <value>(176, 300)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -446,7 +446,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(472, 252)</value>
+      <value>(472, 412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -497,7 +497,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 252)</value>
+      <value>(552, 412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -529,6 +529,37 @@
     </param>
   </block>
   <block>
+    <key>note</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(312, 172)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>note_0</value>
+    </param>
+    <param>
+      <key>note</key>
+      <value>NOTA PARA MEJORAR ESTE BLOQUE. Se proponen las siguientes modificaciones; 1) mejorar el canal para que tenga dos entradas, una para la señal modulada, otra para recibir el monto de ruido requerido (No o Pn o Es/No o SNR) 2) complementar  el e_BERToll  para que asuma el roll de ordenar la SNR requerida. 3) optimizar e_BERToll para que haga promediados más largos y enfatice en los valors SNR que sean más relevantes, evitando con ello recalcular parte de las curvas que van quedando bien definidas y concentrandose donde no están tan definidas.</value>
+    </param>
+  </block>
+  <block>
     <key>pad_sink</key>
     <param>
       <key>comment</key>
@@ -540,7 +571,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(344, 156)</value>
+      <value>(344, 316)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -583,7 +614,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(720, 244)</value>
+      <value>(720, 404)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -626,7 +657,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(32, 172)</value>
+      <value>(32, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -669,7 +700,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(32, 252)</value>
+      <value>(32, 412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -712,7 +743,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 332)</value>
+      <value>(32, 492)</value>
     </param>
     <param>
       <key>_rotation</key>

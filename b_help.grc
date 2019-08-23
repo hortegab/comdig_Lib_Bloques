@@ -144,6 +144,66 @@
     </param>
     <param>
       <key>_io_cache</key>
+      <value>('VCO_hob', 'blk', [], [('0', 'float', 1), ('1', 'float', 1), ('2', 'float', 1)], [('0', 'float', 1)], 'genera una senoidad cuyos parametros pueden ser manipulados por las senales entrantes asi: la primera senal manipula la amplitud; la segunda la frecuencia; la tercera la fase', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import math
+import numpy as np
+from gnuradio import gr
+
+class blk(gr.sync_block):
+    """genera una senoidad cuyos parametros pueden ser manipulados por las senales entrantes asi: la primera senal manipula la amplitud; la segunda la frecuencia; la tercera la fase"""
+    def __init__(self):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='VCO_hob',   # will show up in GRC
+            in_sig=[np.float32, np.float32, np.float32],
+            out_sig=[np.float32]
+        )
+        self.n_m=0 # guarda el ultimo valor de n
+
+    def work(self, input_items, output_items):
+        A=input_items[0]
+        F=input_items[1]
+        P=input_items[2]
+        out=output_items[0]
+        L=len(A)
+        n=np.linspace(self.n_m, self.n_m+L-1,L)
+        self.n_m += L
+        out[:]=A*np.cos(2*math.pi*F*n+P)
+        return len(out)
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(376, 336)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>VCO_hob</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
       <value>('e_Add_bb', 'blk', [], [('0', 'byte', 1), ('1', 'byte', 1)], [('0', 'byte', 1)], '', [])</value>
     </param>
     <param>
@@ -360,6 +420,66 @@ class blk(gr.sync_block):
     <param>
       <key>id</key>
       <value>e_VCO_fase_fc_0</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_VCO_fase_fc', 'blk', [], [('0', 'float', 1), ('1', 'float', 1)], [('0', 'complex', 1)], 'Done by Homero Ortega Boada. Es un VCO dos entradas: \n\tin0 para manipular la fase, in1 para manipular la \n\tmagnitud. En el fondo es el equivalente a un generador\n\tde una senal exponencial compleja. Sobre la configuracion:\n\tcada valor de la senal en in0 es interpretada como la fase\n\tdeseada en radianes. cada valor de in0, es la magnitud deseada', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>
+import numpy as np
+from gnuradio import gr
+
+
+class blk(gr.sync_block):  
+    """Done by Homero Ortega Boada. Es un VCO dos entradas: 
+	in0 para manipular la fase, in1 para manipular la 
+	magnitud. En el fondo es el equivalente a un generador
+	de una senal exponencial compleja. Sobre la configuracion:
+	cada valor de la senal en in0 es interpretada como la fase
+	deseada en radianes. cada valor de in0, es la magnitud deseada"""
+
+    def __init__(self): 
+        gr.sync_block.__init__(self,
+            name='e_VCO_fase_fc',
+	    in_sig=[np.float32, np.float32],
+            out_sig=[np.complex64]
+        )
+    def work(self, input_items, output_items):
+	in0=input_items[0]
+	in1=input_items[1]
+	out0=output_items[0]
+	out0[:] = in1*np.exp(1.j*in0)
+	return len(out0)
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(592, 448)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_VCO_fase_fc_0_0</value>
     </param>
   </block>
   <block>
@@ -710,6 +830,100 @@ class blk(gr.sync_block):
     </param>
   </block>
   <block>
+    <key>epy_module</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>source_code</key>
+      <value>################################################################################
+##           Funciones sigulares en Tratamiento de senales y sistemas         ##
+################################################################################
+# Lo siguiente aplica para todas las funciones aqui incluidas:
+# cada funcion busca generar un tipo de forma de pulso rodeada de ceros
+# los resultados se entregan en forma de un vector x
+# Estos son los parametros usados:
+# ntaps: es el tamano del vector y coincide con la duracion de la senal generada
+# nzero: es el numero de ceros que rodean el pulso generado. Si nzero=0 no 
+# habran ceros.
+import numpy as np
+
+def pulse_rect(ntaps,nzeros):
+# Descripcion: esta funcion permite generar un pulso rectangular discreto
+	n_val=ntaps-nzeros             # el numero de valores no iguales a cero
+	x=np.zeros(ntaps)       # crea un vector de tamano ntaps lleno de ceros
+	ntaps_m= int(ntaps/2)                # el punto medio del vector
+	ntaps_i= ntaps_m-int(n_val/2)        # el punto de inicio para los unos
+	x[ntaps_i:ntaps_i+n_val:1]=np.ones(n_val) # llenado de los unos
+	return x
+
+def pulse_ramp(ntaps,nzeros):
+# Descripcion: esta funcion permite generar un pulso en forma de rampa discreto
+	n_val=ntaps-nzeros            
+	x=np.zeros(ntaps)             
+	ntaps_m= int(ntaps/2)         
+	ntaps_i= ntaps_m-int(n_val/2) 
+	x[ntaps_i:ntaps_i+n_ones:1]=np.linspace(0,n_val-1,n_val) 
+	return x
+
+def pulse_delta(ntaps):
+# Descripcion: esta funcion permite generar la funcion impulso o funcion
+# delta de Dirac discreta
+	x=np.zeros(ntaps)                      
+	ntaps_m= int(ntaps/2)                  
+	x[ntaps_m]=1                           
+	return x
+
+def pulse_doublet(ntaps):
+# Descripcion: esta funcion permite generar una funcion doblete unitario discreta
+	x=np.zeros(ntaps)                      
+	ntaps_m= int(ntaps/2)                  
+	x[ntaps_m]=1                           
+	x[ntaps_m+1]=-1                        
+	return x
+
+def pulse_step(ntaps, nzeros):
+# Descripcion: esta funcion permite generar una funcion escalon de Heaviside
+	n_val=ntaps-nzeros                     
+	x=np.zeros(ntaps)                      
+	x[nzeros:ntaps:1]=np.ones(n_val) 
+	return x
+
+def pulse_exp(ntaps,nzeros, C, a):
+# Descripcion: Para generar una funcion exponencial de la forma Ca^n, 
+# donde n es tiempo discreto
+	n_val=ntaps-nzeros                        
+	x=np.zeros(ntaps)                         
+	ntaps_i = nzeros                    
+	n=np.linspace(0,n_val-1,n_val)      
+	x[ntaps_i:ntaps:1]=C*np.power(a,n) 
+	return x
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 180)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>e_signal</value>
+    </param>
+  </block>
+  <block>
     <key>epy_block</key>
     <param>
       <key>alias</key>
@@ -871,6 +1085,202 @@ class blk(gr.sync_block):
     </param>
   </block>
   <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_mean_meter_ff', 'mean_meter', [], [('0', 'float', 1)], [('0', 'float', 1)], 'Descripcion del bloque ', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class mean_meter(gr.sync_block):
+    """Descripcion del bloque """
+    def __init__(self):
+        gr.sync_block.__init__(self,
+            name="e_mean_meter_ff",
+            in_sig=[np.float32],
+            out_sig=[np.float32])
+
+        # variables externas
+	self.contador = 0
+	self.acum=0
+    def work(self, input_items, output_items):
+        # traduccion a algo que podemos manejar mejor
+        in0 = input_items[0]
+        out0 = output_items[0]
+        # Logica principal
+	self.contador += len(in0)
+	self.acum += np.sum(in0)
+	out0[:] = self.acum/self.contador
+        return len(output_items[0])
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(192, 176)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_0</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>Ac</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_VCO_frec_fc', 'blk', [('samp_rate', '200000.0'), ('Ac', '1.0')], [('0', 'float', 1)], [('0', 'complex', 1)], 'Done by Homero Ortega Boada', ['Ac', 'samp_rate'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each time this file is saved, GRC will instantiate the first class it finds
+to get ports and parameters of your block. The arguments to __init__  will
+be the parameters. All of them are required to have default values!
+"""
+
+import numpy as np
+from gnuradio import gr
+
+
+class blk(gr.sync_block):  
+    """Done by Homero Ortega Boada"""
+
+    def __init__(self, samp_rate=200000., Ac=1.):  # only default arguments here
+        """arguments to this function show up as parameters in GRC"""
+        gr.sync_block.__init__(
+            self,
+            name='e_VCO_frec_fc',   # will show up in GRC
+            in_sig=[np.float32],
+            out_sig=[np.complex64]
+        )
+        self.samp_rate = float(samp_rate)
+        self.Ac = Ac
+	self.last_t=0.
+
+    def work(self, input_items, output_items):
+	in0=input_items[0]
+	out0=output_items[0]
+        L=len(in0)
+	t=np.arange(L)/self.samp_rate+self.last_t
+	theta=2.*np.pi*in0*t
+	out0[:] = self.Ac*np.exp(1.j*theta)
+	self.last_t += L/self.samp_rate
+	return len(out0)
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(368, 460)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_1</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_module</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>source_code</key>
+      <value>import math
+import numpy as np
+# Cada funcion siguinete es una forma de pulso para una senal digital
+# Los parametros comunmente usados son:
+# Sps (Samples per simbol): Duracion de un simbolo en tiempo discreto
+# ntaps: es el numero de muestras a generar por simbolo. Esto debido a que,
+# en la practica, un simbolo puede invadir a otros simbolos (ISI), asi que
+# las muestras de un simbolo se pueden expandir mas alla de Sps
+
+# Bipolar non return to zero level signal
+def B_NRZ_L(Sps):
+    return Sps*[1.,]
+##  Forma sinc 
+def sinc(Sps,ntaps):
+    n=np.linspace(-int(ntaps/2), int(ntaps/2-1),ntaps)
+    h=np.sinc(n/Sps)
+    return h
+# forma diente se sierra
+def saw(Sps):
+    return np.linspace(0,Sps-1,Sps)	
+# Bipolar non return to zero signal
+def RZ(Sps):
+    h=Sps*[1.,]
+    Sps_m=int(Sps/2)
+    h[Sps_m+1:Sps:1]=np.zeros(Sps-Sps_m)
+    return h
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 220)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>formas</value>
+    </param>
+  </block>
+  <block>
     <key>epy_module</key>
     <param>
       <key>alias</key>
@@ -954,7 +1364,7 @@ def rrcos(Sps,ntaps,beta):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 92)</value>
+      <value>(16, 148)</value>
     </param>
     <param>
       <key>_rotation</key>
