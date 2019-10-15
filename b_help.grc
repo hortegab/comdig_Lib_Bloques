@@ -1411,6 +1411,67 @@ class mean_meter(gr.sync_block):
   <block>
     <key>epy_block</key>
     <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_diezmad_ff', 'decimator', [('paso', '2')], [('0', 'float', 1)], [('0', 'float', 1)], 'Elimins paso-1 muestras, de manera que solo quedan vigentes las muestras separadas en paso muestras', ['paso'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>import numpy as np
+from gnuradio import gr
+
+class decimator(gr.decim_block):
+    """Elimins paso-1 muestras, de manera que solo quedan vigentes las muestras separadas en paso muestras"""
+    def __init__(self, paso=2):
+        gr.decim_block.__init__(self,
+            name="e_diezmad_ff",
+            in_sig=[np.float32],
+            out_sig=[np.float32], decim=paso)
+
+        # variables externas
+	self.paso = paso
+	
+    def work(self, input_items, output_items):
+        # traduccion a algo que podemos manejar mejor
+        in0 = input_items[0]
+        out0 = output_items[0]
+        # Logica principal
+	out0[:] = in0[::self.paso]
+        return len(output_items[0])
+
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(792, 404)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_0_0</value>
+    </param>
+    <param>
+      <key>paso</key>
+      <value>Kd</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
       <key>Ac</key>
       <value>1.0</value>
     </param>
