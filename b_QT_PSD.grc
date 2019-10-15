@@ -90,22 +90,18 @@
     </param>
   </block>
   <block>
-    <key>parameter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
+    <key>variable</key>
     <param>
       <key>comment</key>
       <value></value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 28)</value>
+      <value>(784, 28)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -113,27 +109,11 @@
     </param>
     <param>
       <key>id</key>
-      <value>Amp</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>Amplitud</value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value></value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value></value>
+      <value>Ka</value>
     </param>
     <param>
       <key>value</key>
-      <value>1.</value>
+      <value>numpy.full(N,1./(Ensayos*N))</value>
     </param>
   </block>
   <block>
@@ -156,7 +136,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 420)</value>
+      <value>(592, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -199,7 +179,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 28)</value>
+      <value>(464, 28)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -293,7 +273,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(656, 108)</value>
+      <value>(680, 20)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -340,7 +320,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 28)</value>
+      <value>(592, 28)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -372,7 +352,7 @@
     </param>
   </block>
   <block>
-    <key>analog_const_source_x</key>
+    <key>b_PSD_ff</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -382,28 +362,28 @@
       <value></value>
     </param>
     <param>
-      <key>const</key>
-      <value>0</value>
-    </param>
-    <param>
       <key>affinity</key>
       <value></value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_rate_audio</key>
+      <value>22000</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(176, 292)</value>
+      <value>(168, 348)</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>180</value>
+      <value>0</value>
     </param>
     <param>
       <key>id</key>
-      <value>analog_const_source_x_0_0</value>
+      <value>b_PSD_ff_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -414,8 +394,12 @@
       <value>0</value>
     </param>
     <param>
-      <key>type</key>
-      <value>float</value>
+      <key>N</key>
+      <value>1024</value>
+    </param>
+    <param>
+      <key>Ensayos</key>
+      <value>1000000</value>
     </param>
   </block>
   <block>
@@ -438,7 +422,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(592, 212)</value>
+      <value>(448, 204)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -462,49 +446,6 @@
     </param>
   </block>
   <block>
-    <key>blocks_float_to_complex</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(176, 200)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_float_to_complex_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_multiply_const_vxx</key>
     <param>
       <key>alias</key>
@@ -516,7 +457,7 @@
     </param>
     <param>
       <key>const</key>
-      <value>numpy.full(N,1./(Ensayos*N))</value>
+      <value>Ka</value>
     </param>
     <param>
       <key>affinity</key>
@@ -524,11 +465,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(208, 420)</value>
+      <value>(736, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -575,7 +516,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(304, 212)</value>
+      <value>(168, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -587,7 +528,7 @@
     </param>
     <param>
       <key>type</key>
-      <value>complex</value>
+      <value>float</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -622,7 +563,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>fft_size</key>
@@ -634,7 +575,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(424, 180)</value>
+      <value>(280, 172)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -646,7 +587,7 @@
     </param>
     <param>
       <key>type</key>
-      <value>complex</value>
+      <value>float</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -685,7 +626,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 108)</value>
+      <value>(960, 20)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -701,18 +642,22 @@
     </param>
   </block>
   <block>
-    <key>pad_sink</key>
+    <key>note</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
     <param>
       <key>comment</key>
       <value></value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(632, 364)</value>
+      <value>(344, 644)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -720,27 +665,11 @@
     </param>
     <param>
       <key>id</key>
-      <value>pad_sink_0</value>
+      <value>note_0</value>
     </param>
     <param>
-      <key>type</key>
-      <value></value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>out</value>
-    </param>
-    <param>
-      <key>num_streams</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>optional</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
+      <key>note</key>
+      <value>podria reutilizar b_PSD_ff para que este sea mas simple</value>
     </param>
   </block>
   <block>
@@ -755,7 +684,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 196)</value>
+      <value>(0, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -814,7 +743,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(432, 364)</value>
+      <value>(976, 228)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1030,11 +959,11 @@
     </param>
     <param>
       <key>x_start</key>
-      <value>-samp_rate_audio/2</value>
+      <value>-samp_rate/2.</value>
     </param>
     <param>
       <key>x_step</key>
-      <value>(samp_rate_audio-1)/N</value>
+      <value>(samp_rate-1.)/N</value>
     </param>
     <param>
       <key>x_units</key>
@@ -1069,7 +998,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1081,7 +1010,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>samp_rate_audio</value>
+      <value>samp_rate</value>
     </param>
     <param>
       <key>label</key>
@@ -1111,26 +1040,14 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>analog_const_source_x_0_0</source_block_id>
-    <sink_block_id>blocks_float_to_complex_0</sink_block_id>
+    <source_block_id>b_PSD_ff_0</source_block_id>
+    <sink_block_id>qtgui_vector_sink_f_0</sink_block_id>
     <source_key>0</source_key>
-    <sink_key>1</sink_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_complex_to_mag_squared_0</source_block_id>
     <sink_block_id>E3TRadio_vector_average_hob_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_float_to_complex_0</source_block_id>
-    <sink_block_id>blocks_stream_to_vector_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_multiply_const_vxx_0_0</source_block_id>
-    <sink_block_id>pad_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -1154,7 +1071,13 @@
   </connection>
   <connection>
     <source_block_id>pad_source_2</source_block_id>
-    <sink_block_id>blocks_float_to_complex_0</sink_block_id>
+    <sink_block_id>b_PSD_ff_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pad_source_2</source_block_id>
+    <sink_block_id>blocks_stream_to_vector_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
