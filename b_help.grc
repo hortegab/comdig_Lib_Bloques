@@ -247,7 +247,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 468)</value>
+      <value>(264, 460)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -437,7 +437,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(848, 356)</value>
+      <value>(984, 356)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -556,7 +556,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1024, 352)</value>
+      <value>(1136, 352)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -616,7 +616,7 @@ class blk(gr.sync_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(696, 360)</value>
+      <value>(640, 344)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1454,7 +1454,7 @@ class decimator(gr.decim_block):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(792, 404)</value>
+      <value>(824, 364)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1589,7 +1589,7 @@ class e_add_cc(gr.sync_block):
             self,
  
             # Lo siguiente es para definir el nombre que tendra nuestro bloque para los usuarios de GRC
-            name='Plantilla_para_crear_bloques_cc', 
+            name='Plantilla__detallada_para_crear_bloques_cc', 
  
             # A continuacion se definen los tipos de senales de entrada y salida. Veamos algunos ejemplos:
             # [np.complex64]: cuando se tiene una sola senal y es compleja
@@ -2092,7 +2092,7 @@ def RZ(Sps):
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 476)</value>
+      <value>(824, 476)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2495,6 +2495,32 @@ def rrcos(Sps,ntaps,beta):
                 h[n]=Num/Den                
     Amp=numpy.amax(h)
     return h/Amp
+########################################################
+##     Bipolar non return to zero level signal        ##
+########################################################
+def B_NRZ_L(Sps):
+    return Sps*[1.,]
+
+########################################################
+##  Forma sinc . Es la misma nyq() que aparece arriba ##
+########################################################
+def sinc(Sps,ntaps):
+    n=np.linspace(-int(ntaps/2), int(ntaps/2-1),ntaps)
+    h=np.sinc(n/Sps)
+    return h
+########################################################
+##              forma diente se sierra                ##
+########################################################
+def saw(Sps):
+    return np.linspace(0,Sps-1,Sps)	
+########################################################
+#         Bipolar non return to zero signal           ##
+########################################################
+def RZ(Sps):
+    h=Sps*[1.,]
+    Sps_m=int(Sps/2)
+    h[Sps_m+1:Sps:1]=np.zeros(Sps-Sps_m)
+    return h
 </value>
     </param>
     <param>
