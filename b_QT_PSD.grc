@@ -136,7 +136,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(592, 196)</value>
+      <value>(760, 188)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -352,7 +352,7 @@
     </param>
   </block>
   <block>
-    <key>b_PSD_ff</key>
+    <key>analog_const_source_x</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -362,20 +362,20 @@
       <value></value>
     </param>
     <param>
+      <key>const</key>
+      <value>0</value>
+    </param>
+    <param>
       <key>affinity</key>
       <value></value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>samp_rate_audio</key>
-      <value>22000</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 348)</value>
+      <value>(0, 252)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -383,7 +383,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>b_PSD_ff_0</value>
+      <value>analog_const_source_x_0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -394,12 +394,8 @@
       <value>0</value>
     </param>
     <param>
-      <key>N</key>
-      <value>1024</value>
-    </param>
-    <param>
-      <key>Ensayos</key>
-      <value>1000000</value>
+      <key>type</key>
+      <value>float</value>
     </param>
   </block>
   <block>
@@ -422,7 +418,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(448, 204)</value>
+      <value>(616, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -443,6 +439,49 @@
     <param>
       <key>vlen</key>
       <value>N</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_float_to_complex</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(184, 184)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_float_to_complex_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -469,7 +508,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(736, 196)</value>
+      <value>(904, 188)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -516,7 +555,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 196)</value>
+      <value>(320, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -528,7 +567,7 @@
     </param>
     <param>
       <key>type</key>
-      <value>float</value>
+      <value>complex</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -575,7 +614,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(280, 172)</value>
+      <value>(448, 164)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -587,7 +626,7 @@
     </param>
     <param>
       <key>type</key>
-      <value>float</value>
+      <value>complex</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -684,7 +723,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 196)</value>
+      <value>(0, 180)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -743,7 +782,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 228)</value>
+      <value>(1064, 132)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1040,14 +1079,20 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>b_PSD_ff_0</source_block_id>
-    <sink_block_id>qtgui_vector_sink_f_0</sink_block_id>
+    <source_block_id>analog_const_source_x_0</source_block_id>
+    <sink_block_id>blocks_float_to_complex_0</sink_block_id>
     <source_key>0</source_key>
-    <sink_key>0</sink_key>
+    <sink_key>1</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_complex_to_mag_squared_0</source_block_id>
     <sink_block_id>E3TRadio_vector_average_hob_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_float_to_complex_0</source_block_id>
+    <sink_block_id>blocks_stream_to_vector_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -1071,13 +1116,7 @@
   </connection>
   <connection>
     <source_block_id>pad_source_2</source_block_id>
-    <sink_block_id>b_PSD_ff_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>pad_source_2</source_block_id>
-    <sink_block_id>blocks_stream_to_vector_0</sink_block_id>
+    <sink_block_id>blocks_float_to_complex_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
