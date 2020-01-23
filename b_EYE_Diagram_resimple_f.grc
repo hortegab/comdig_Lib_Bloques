@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>b_Eye_Diagram_simple</value>
+      <value>b_Eye_Diagram_simple_f</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -82,7 +82,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>b_Eye_Diagram_resimple</value>
+      <value>b_Eye_Diagram_resimple_f</value>
     </param>
     <param>
       <key>placement</key>
@@ -246,6 +246,53 @@
     </param>
     <param>
       <key>_coordinate</key>
+      <value>(1024, 372)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>Retardo_ojo</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Retardo_ojo</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
       <value>(232, 3)</value>
     </param>
     <param>
@@ -368,7 +415,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>"Eye Diagramm"</value>
+      <value>"Eye Diagram"</value>
     </param>
   </block>
   <block>
@@ -1016,6 +1063,61 @@
     </param>
   </block>
   <block>
+    <key>blocks_delay</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>delay</key>
+      <value>Retardo_ojo</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(688, 372)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_delay_0_7</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_ports</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
     <key>pad_source</key>
     <param>
       <key>comment</key>
@@ -1486,62 +1588,68 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
+    <source_block_id>blocks_delay_0_7</source_block_id>
     <sink_block_id>blocks_delay_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
+    <source_block_id>blocks_delay_0_7</source_block_id>
     <sink_block_id>blocks_delay_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
+    <source_block_id>blocks_delay_0_7</source_block_id>
     <sink_block_id>blocks_delay_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
+    <source_block_id>blocks_delay_0_7</source_block_id>
     <sink_block_id>blocks_delay_0_2</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
+    <source_block_id>blocks_delay_0_7</source_block_id>
     <sink_block_id>blocks_delay_0_3</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
+    <source_block_id>blocks_delay_0_7</source_block_id>
     <sink_block_id>blocks_delay_0_3_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
+    <source_block_id>blocks_delay_0_7</source_block_id>
     <sink_block_id>blocks_delay_0_3_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
+    <source_block_id>blocks_delay_0_7</source_block_id>
     <sink_block_id>blocks_delay_0_4</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
+    <source_block_id>blocks_delay_0_7</source_block_id>
     <sink_block_id>blocks_delay_0_5</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
+    <source_block_id>blocks_delay_0_7</source_block_id>
     <sink_block_id>blocks_delay_0_6</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pad_source_0</source_block_id>
+    <sink_block_id>blocks_delay_0_7</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

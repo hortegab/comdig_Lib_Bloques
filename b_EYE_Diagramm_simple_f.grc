@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>b_Eye_Diagram_simple</value>
+      <value>b_Eye_Diagram_simple_f</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -82,7 +82,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>b_Eye_Diagram_simple</value>
+      <value>b_Eye_Diagram_simple_f</value>
     </param>
     <param>
       <key>placement</key>
