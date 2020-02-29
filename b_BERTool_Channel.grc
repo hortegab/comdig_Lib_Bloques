@@ -916,7 +916,7 @@
     </param>
     <param>
       <key>name</key>
-      <value>"Curva de BER"</value>
+      <value></value>
     </param>
     <param>
       <key>nconnections</key>

@@ -1696,6 +1696,147 @@ class e_add_cc(gr.sync_block):
     </param>
   </block>
   <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Sum Mod', 'blk', [('M', '4'), ('sumando', '1')], [('0', 'byte', 1)], [('0', 'byte', 1)], 'Suma por mudulo M', ['M', 'sumando'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each time this file is saved, GRC will instantiate the first class it finds
+to get ports and parameters of your block. The arguments to __init__  will
+be the parameters. All of them are required to have default values!
+"""
+
+import numpy as np
+from gnuradio import gr
+
+
+class blk(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
+    """Suma por mudulo M"""
+
+    def __init__(self, M=4, sumando=1):  # only default arguments here
+        """arguments to this function show up as parameters in GRC"""
+        gr.sync_block.__init__(
+            self,
+            name='Sum Mod',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+        # if an attribute with the same name as a parameter is found,
+        # a callback is registered (properties work, too).
+        self.M = M
+	self.sumando=sumando
+
+    def work(self, input_items, output_items):
+        """suma en modulo M"""
+        output_items[0][:] = (input_items[0] + self.sumando%self.M)%self.M
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(40, 276)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_3</value>
+    </param>
+    <param>
+      <key>M</key>
+      <value>M</value>
+    </param>
+    <param>
+      <key>sumando</key>
+      <value>3</value>
+    </param>
+  </block>
+  <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('Gray Code Converter', 'blk', [], [('0', 'byte', 1)], [('0', 'byte', 1)], 'Gray Code Converter. Supongamos que tienes una senal dada en simbolos M_PAM, pero necesitas que esos valores M-PAM se expresen en codigo Gray. Esta seria la solucion', [])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each time this file is saved, GRC will instantiate the first class it finds
+to get ports and parameters of your block. The arguments to __init__  will
+be the parameters. All of them are required to have default values!
+"""
+
+import numpy as np
+from gnuradio import gr
+
+
+class blk(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
+    """Gray Code Converter. Supongamos que tienes una senal dada en simbolos M_PAM, pero necesitas que esos valores M-PAM se expresen en codigo Gray. Esta seria la solucion"""
+
+    def __init__(self):  # only default arguments here
+        """arguments to this function show up as parameters in GRC"""
+        gr.sync_block.__init__(
+            self,
+            name='Gray Code Converter',   # will show up in GRC
+            in_sig=[np.int8],
+            out_sig=[np.int8]
+        )
+        # if an attribute with the same name as a parameter is found,
+        # a callback is registered (properties work, too).
+        
+
+    def work(self, input_items, output_items):
+        """la conversion a gray code"""
+        output_items[0][:] = input_items[0] ^ (input_items[0] &gt;&gt; 1)
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(-64, 240)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>epy_block_0_4</value>
+    </param>
+  </block>
+  <block>
     <key>epy_module</key>
     <param>
       <key>alias</key>
