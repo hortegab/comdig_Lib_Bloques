@@ -22,7 +22,7 @@
     </param>
     <param>
       <key>description</key>
-      <value>Hecho por Homero Ortega. Recibe an input with values between Xmin and Xmax and calculate the Probaility Density Function (PDF) dinamically.</value>
+      <value>Hecho por Homero Ortega. Recibe an input with values between Xmin and Xmax and calculate the Cumulative Distribution Function (CDF) dinamically.</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>b_pdf_ff</value>
+      <value>b_cdf_ff</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -82,7 +82,7 @@
     </param>
     <param>
       <key>title</key>
-      <value>b_pdf_ff</value>
+      <value>b_cdf_ff</value>
     </param>
     <param>
       <key>placement</key>
@@ -124,7 +124,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -237,7 +237,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 4)</value>
+      <value>(232, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -284,7 +284,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 4)</value>
+      <value>(320, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -367,6 +367,96 @@
     </param>
   </block>
   <block>
+    <key>epy_block</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_io_cache</key>
+      <value>('e_cdf_ff', 'e_cdf_ff', [('Xmin', '-1.0'), ('Xmax', '1.0'), ('N', '1024')], [('0', 'float', 1024)], [('0', 'float', 1024)], 'Hecho por Homero Ortega. Xmin is the minimum value that the input signal can take, Xmax is the maximum value that the input signal can take; N es the number of steps the signal will be analized in amplitud and is the number of samples in the input vector', ['N', 'Xmax', 'Xmin'])</value>
+    </param>
+    <param>
+      <key>_source_code</key>
+      <value>"""
+Embedded Python Blocks:
+
+Each time this file is saved, GRC will instantiate the first class it finds
+to get ports and parameters of your block. The arguments to __init__  will
+be the parameters. All of them are required to have default values!
+"""
+
+import numpy as np
+from gnuradio import gr
+from scipy import integrate
+import scipy.stats
+
+class e_cdf_ff(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
+    """Hecho por Homero Ortega. Xmin is the minimum value that the input signal can take, Xmax is the maximum value that the input signal can take; N es the number of steps the signal will be analized in amplitud and is the number of samples in the input vector"""
+
+    def __init__(self, Xmin=-1., Xmax=1., N=1024):  # only default arguments here
+        gr.sync_block.__init__(
+            self,
+            name='e_cdf_ff',   # will show up in GRC
+            in_sig=[(np.float32, N)],
+            out_sig=[(np.float32,N)]
+        )
+        self.Xmin = Xmin
+	self.Xmax = Xmax
+	self.N = N
+        self.X=np.linspace(self.Xmin,self.Xmax,self.N) # Se le pueden dar menos valores, pero el bloque seria de tipo decimador
+        self.counts=np.array([0.]*self.N)
+        self.N_hist=0. #numero de histogramas procesados
+        
+    def work(self, input_items, output_items):
+        
+        x=input_items[0] # las muestras entrantes a analizar
+        h=np.histogram(x,bins=self.N, range=(self.Xmin, self.Xmax)) # h[0] es el histograma propiamente, h[1] los bins
+        hist_dist=scipy.stats.rv_histogram(h) # objeto que identifica muchos parametros de un histograma incluyento pdf
+
+        cdf=hist_dist.cdf(self.X) # cdf instantanea
+
+        self.N_hist += 1     # se eleva el contador de histrogramas calculados
+        self.counts += cdf  # cdf acumulada
+        output_items[0][:]=self.counts/(self.N_hist)   # cdf promediada
+
+        return len(output_items[0])
+</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(352, 196)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>cdf_ff</value>
+    </param>
+    <param>
+      <key>N</key>
+      <value>N</value>
+    </param>
+    <param>
+      <key>Xmax</key>
+      <value>Xmax</value>
+    </param>
+    <param>
+      <key>Xmin</key>
+      <value>Xmin</value>
+    </param>
+  </block>
+  <block>
     <key>pad_source</key>
     <param>
       <key>comment</key>
@@ -410,182 +500,6 @@
     </param>
   </block>
   <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('e_pdf2_ff', 'e_pdf2_ff', [('Xmin', '-1.0'), ('Xmax', '1.0'), ('N', '1024')], [('0', 'float', 1024)], [('0', 'float', 1024)], 'Hecho por Homero Ortega. Xmin is the minimum value that the input signal can take, Xmax is the maximum value that the input signal can take; N es the number of steps the signal will be analized in amplitud and is the number of samples for the histogram', ['N', 'Xmax', 'Xmin'])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each time this file is saved, GRC will instantiate the first class it finds
-to get ports and parameters of your block. The arguments to __init__  will
-be the parameters. All of them are required to have default values!
-"""
-
-import numpy as np
-from gnuradio import gr
-from scipy import integrate
-import scipy.stats
-
-class e_pdf2_ff(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
-    """Hecho por Homero Ortega. Xmin is the minimum value that the input signal can take, Xmax is the maximum value that the input signal can take; N es the number of steps the signal will be analized in amplitud and is the number of samples for the histogram"""
-
-    def __init__(self, Xmin=-1., Xmax=1., N=1024):  # only default arguments here
-        gr.sync_block.__init__(
-            self,
-            name='e_pdf2_ff',   # will show up in GRC
-            in_sig=[(np.float32, N)],
-            out_sig=[(np.float32,N)]
-        )
-        self.Xmin = Xmin
-	self.Xmax = Xmax
-	self.N = N
-        self.X=np.linspace(self.Xmin,self.Xmax,self.N) # Se le pueden dar menos valores, pero el bloque seria de tipo decimador
-        self.counts=np.array([0.]*self.N)
-        self.N_hist=0. #numero de histogramas procesados
-        
-    def work(self, input_items, output_items):
-        
-        x=input_items[0] # las muestras entrantes a analizar
-        h=np.histogram(x,bins=self.N, range=(self.Xmin, self.Xmax)) # h[0] es el histograma propiamente, h[1] los bins
-        hist_dist=scipy.stats.rv_histogram(h) # objeto que identifica muchos parametros de un histograma incluyento pdf
-        pdf=hist_dist.pdf(self.X) # es la pdf instantanea (del vector actual)
-
-        # cdf=hist_dist.cdf(self.X) # Este seria el comando si necesitamos cdf en vez de pdf
-
-        self.N_hist += 1     # se eleva el contador de histrogramas calculados
-        self.counts += pdf  # pdf acumulada
-        output_items[0][:]=self.counts/(self.N_hist)   # pdf promediada
-
-        return len(output_items[0])
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(352, 196)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pdf2_ff</value>
-    </param>
-    <param>
-      <key>N</key>
-      <value>N</value>
-    </param>
-    <param>
-      <key>Xmax</key>
-      <value>Xmax</value>
-    </param>
-    <param>
-      <key>Xmin</key>
-      <value>Xmin</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('e_pdf_ff', 'e_pdf_ff', [('Xmin', '-1.0'), ('Xmax', '1.0'), ('N', '1024')], [('0', 'float', 1024)], [('0', 'float', 1024)], 'Hecho por Homero Ortega. Xmin is the minimum value that the input signal can take, Xmax is the maximum value that the input signal can take; N es the number of steps the signal will be analized in amplitud and is the number of samples for the histogram', ['N', 'Xmax', 'Xmin'])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each time this file is saved, GRC will instantiate the first class it finds
-to get ports and parameters of your block. The arguments to __init__  will
-be the parameters. All of them are required to have default values!
-"""
-
-import numpy as np
-from gnuradio import gr
-from scipy import integrate
-
-class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
-    """Hecho por Homero Ortega. Xmin is the minimum value that the input signal can take, Xmax is the maximum value that the input signal can take; N es the number of steps the signal will be analized in amplitud and is the number of samples for the histogram"""
-
-    def __init__(self, Xmin=-1., Xmax=1., N=1024):  # only default arguments here
-        gr.sync_block.__init__(
-            self,
-            name='e_pdf_ff',   # will show up in GRC
-            in_sig=[(np.float32, N)],
-            out_sig=[(np.float32,N)]
-        )
-        self.Xmin = Xmin
-	self.Xmax = Xmax
-	self.N = N
-        self.counts=np.array([0]*self.N)
-        self.N_hist=0. #numero de histogramas procesados
-        self.step=float(Xmax-Xmin)/N
-
-    def work(self, input_items, output_items):
-        out0=output_items[0]
-        x=input_items[0] # las muestras entrantes a analizar
-        h=np.histogram(x,bins=self.N, range=(self.Xmin, self.Xmax))
-        self.N_hist += 1
-        self.counts += h[0] # h es una matrix, el histograma esta en h[0]
-        pdf=self.counts/(self.N_hist*self.N) # propability density function
-        out0[:]=pdf
-        return len(output_items[0])
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1112, 140)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pdf_ff</value>
-    </param>
-    <param>
-      <key>N</key>
-      <value>N</value>
-    </param>
-    <param>
-      <key>Xmax</key>
-      <value>Xmax</value>
-    </param>
-    <param>
-      <key>Xmin</key>
-      <value>Xmin</value>
-    </param>
-  </block>
-  <block>
     <key>parameter</key>
     <param>
       <key>alias</key>
@@ -597,7 +511,7 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -656,11 +570,11 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(536, 148)</value>
+      <value>(560, 148)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -676,7 +590,7 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
     </param>
     <param>
       <key>id</key>
-      <value>qtgui_vector_sink_f_0_0_0</value>
+      <value>qtgui_vector_sink_f_0_0</value>
     </param>
     <param>
       <key>alpha1</key>
@@ -848,7 +762,7 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
     </param>
     <param>
       <key>name</key>
-      <value>"Probability Density Function (PDF)"</value>
+      <value>"Cumulative Distribution Function (CDF )"</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -880,7 +794,7 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
     </param>
     <param>
       <key>x_step</key>
-      <value>(Xmax-Xmin)/N</value>
+      <value>step</value>
     </param>
     <param>
       <key>x_units</key>
@@ -888,7 +802,7 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
     </param>
     <param>
       <key>ymax</key>
-      <value>pdf_max</value>
+      <value>1.</value>
     </param>
     <param>
       <key>ymin</key>
@@ -905,19 +819,19 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
   </block>
   <connection>
     <source_block_id>blocks_stream_to_vector_0_0</source_block_id>
-    <sink_block_id>pdf2_ff</sink_block_id>
+    <sink_block_id>cdf_ff</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>cdf_ff</source_block_id>
+    <sink_block_id>qtgui_vector_sink_f_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>pad_source_0</source_block_id>
     <sink_block_id>blocks_stream_to_vector_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>pdf2_ff</source_block_id>
-    <sink_block_id>qtgui_vector_sink_f_0_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
