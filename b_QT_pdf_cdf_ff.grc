@@ -980,7 +980,7 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
     <key>qtgui_vector_sink_f</key>
     <param>
       <key>autoscale</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>average</key>

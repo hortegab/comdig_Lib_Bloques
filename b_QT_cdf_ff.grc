@@ -412,7 +412,7 @@ class e_cdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
         
         x=input_items[0] # las muestras entrantes a analizar
         h=np.histogram(x,bins=self.N, range=(self.Xmin, self.Xmax)) # h[0] es el histograma propiamente, h[1] los bins
-        hist_dist=scipy.stats.rv_histogram(h) # objeto que identifica muchos parametros de un histograma incluyento pdf
+        hist_dist=scipy.stats.rv_histogram(h) # objeto que identifica muchos parametros de un histograma incluyento cdf
 
         cdf=hist_dist.cdf(self.X) # cdf instantanea
 

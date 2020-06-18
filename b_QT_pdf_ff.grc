@@ -417,7 +417,7 @@
     </param>
     <param>
       <key>_io_cache</key>
-      <value>('e_pdf2_ff', 'e_pdf2_ff', [('Xmin', '-1.0'), ('Xmax', '1.0'), ('N', '1024')], [('0', 'float', 1024)], [('0', 'float', 1024)], 'Hecho por Homero Ortega. Xmin is the minimum value that the input signal can take, Xmax is the maximum value that the input signal can take; N es the number of steps the signal will be analized in amplitud and is the number of samples for the histogram', ['N', 'Xmax', 'Xmin'])</value>
+      <value>('e_pdf_ff', 'e_pdf_ff', [('Xmin', '-1.0'), ('Xmax', '1.0'), ('N', '1024')], [('0', 'float', 1024)], [('0', 'float', 1024)], 'Hecho por Homero Ortega. Xmin is the minimum value that the input signal can take, Xmax is the maximum value that the input signal can take; N es the number of steps the signal will be analized in amplitud and is the number of samples for the histogram', ['N', 'Xmax', 'Xmin'])</value>
     </param>
     <param>
       <key>_source_code</key>
@@ -431,16 +431,16 @@ be the parameters. All of them are required to have default values!
 
 import numpy as np
 from gnuradio import gr
-from scipy import integrate
+#from scipy import integrate
 import scipy.stats
 
-class e_pdf2_ff(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
+class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
     """Hecho por Homero Ortega. Xmin is the minimum value that the input signal can take, Xmax is the maximum value that the input signal can take; N es the number of steps the signal will be analized in amplitud and is the number of samples for the histogram"""
 
     def __init__(self, Xmin=-1., Xmax=1., N=1024):  # only default arguments here
         gr.sync_block.__init__(
             self,
-            name='e_pdf2_ff',   # will show up in GRC
+            name='e_pdf_ff',   # will show up in GRC
             in_sig=[(np.float32, N)],
             out_sig=[(np.float32,N)]
         )
@@ -478,91 +478,6 @@ class e_pdf2_ff(gr.sync_block):  # other base classes are basic_block, decim_blo
     <param>
       <key>_coordinate</key>
       <value>(352, 196)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pdf2_ff</value>
-    </param>
-    <param>
-      <key>N</key>
-      <value>N</value>
-    </param>
-    <param>
-      <key>Xmax</key>
-      <value>Xmax</value>
-    </param>
-    <param>
-      <key>Xmin</key>
-      <value>Xmin</value>
-    </param>
-  </block>
-  <block>
-    <key>epy_block</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_io_cache</key>
-      <value>('e_pdf_ff', 'e_pdf_ff', [('Xmin', '-1.0'), ('Xmax', '1.0'), ('N', '1024')], [('0', 'float', 1024)], [('0', 'float', 1024)], 'Hecho por Homero Ortega. Xmin is the minimum value that the input signal can take, Xmax is the maximum value that the input signal can take; N es the number of steps the signal will be analized in amplitud and is the number of samples for the histogram', ['N', 'Xmax', 'Xmin'])</value>
-    </param>
-    <param>
-      <key>_source_code</key>
-      <value>"""
-Embedded Python Blocks:
-
-Each time this file is saved, GRC will instantiate the first class it finds
-to get ports and parameters of your block. The arguments to __init__  will
-be the parameters. All of them are required to have default values!
-"""
-
-import numpy as np
-from gnuradio import gr
-from scipy import integrate
-
-class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block
-    """Hecho por Homero Ortega. Xmin is the minimum value that the input signal can take, Xmax is the maximum value that the input signal can take; N es the number of steps the signal will be analized in amplitud and is the number of samples for the histogram"""
-
-    def __init__(self, Xmin=-1., Xmax=1., N=1024):  # only default arguments here
-        gr.sync_block.__init__(
-            self,
-            name='e_pdf_ff',   # will show up in GRC
-            in_sig=[(np.float32, N)],
-            out_sig=[(np.float32,N)]
-        )
-        self.Xmin = Xmin
-	self.Xmax = Xmax
-	self.N = N
-        self.counts=np.array([0]*self.N)
-        self.N_hist=0. #numero de histogramas procesados
-        self.step=float(Xmax-Xmin)/N
-
-    def work(self, input_items, output_items):
-        out0=output_items[0]
-        x=input_items[0] # las muestras entrantes a analizar
-        h=np.histogram(x,bins=self.N, range=(self.Xmin, self.Xmax))
-        self.N_hist += 1
-        self.counts += h[0] # h es una matrix, el histograma esta en h[0]
-        pdf=self.counts/(self.N_hist*self.N) # propability density function
-        out0[:]=pdf
-        return len(output_items[0])
-</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1112, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -660,7 +575,7 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(536, 148)</value>
+      <value>(480, 148)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -905,7 +820,7 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
   </block>
   <connection>
     <source_block_id>blocks_stream_to_vector_0_0</source_block_id>
-    <sink_block_id>pdf2_ff</sink_block_id>
+    <sink_block_id>pdf_ff</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -916,7 +831,7 @@ class e_pdf_ff(gr.sync_block):  # other base classes are basic_block, decim_bloc
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pdf2_ff</source_block_id>
+    <source_block_id>pdf_ff</source_block_id>
     <sink_block_id>qtgui_vector_sink_f_0_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
